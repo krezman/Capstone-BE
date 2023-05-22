@@ -81,6 +81,6 @@ def delete_post(id):
 
     return jsonify(
         data = {},
-        message = f'Successfully deleted {nums_of_rows_deleted} dog with id {id}',
+        message = f'Successfully deleted {nums_of_rows_deleted} post with id {id}',
         status = 200
     ), 200
