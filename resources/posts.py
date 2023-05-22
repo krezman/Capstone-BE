@@ -13,15 +13,19 @@ posts = Blueprint('posts', 'posts')
 @posts.route('/', methods=['GET'])
 def post_index():
     results = models.Post.select()
+    post_dicts = [model_to_dict(post) for post in results]
 
-    current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
-
-    for post_dict in current_user_post_dicts:
+    for post_dict in post_dicts:
         post_dict['post_owner'].pop('password')
+    # current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
+
+    # for post_dict in current_user_post_dicts:
+    #     post_dict['post_owner'].pop('password')
 
     return jsonify({
-        'data': current_user_post_dicts,
-        'message': f"Successfully found {len(current_user_post_dicts)} posts.",
+        'data': post_dicts,
+        'message': "Successfully found posts!!",
+        # 'message': f"Successfully found {len(current_user_post_dicts)} posts.",
         'status': 200
     }), 200
 

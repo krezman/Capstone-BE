@@ -29,7 +29,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 @login_manager.user_loader
-def _load_user(userid):
+def load_user(userid):
     try:
         return models.User.get(models.User.id == userid)
     except:
