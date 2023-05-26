@@ -10,7 +10,7 @@ from flask_login import login_required, current_user
 
 posts = Blueprint('posts', 'posts')
 
-@posts.route('/', methods=['GET'])
+@posts.route('/index', methods=['GET'])
 def post_index():
     results = models.Post.select()
     post_dicts = [model_to_dict(post) for post in results]

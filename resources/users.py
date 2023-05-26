@@ -61,7 +61,6 @@ def register():
 def login():
     payload = request.get_json()
     payload['email'] = payload['email'].lower()
-    payload['username'] = payload['username'].lower()
     
     try:
         user = models.User.get(models.User.email == payload['email'])
@@ -72,6 +71,7 @@ def login():
 
         if (check_pw):
             login_user(user)
+            print(user_dict)
 
             return jsonify(
                 data = user_dict,
@@ -101,3 +101,35 @@ def logout():
         status=200,
         message= 'successful logout'
     ), 200
+
+@users.route('/<id>', methods=['GET'])
+def profile(id):
+    user_profile = models.User.get_by_id(id)
+    profile = user_profile.pop('password')
+    print(profile)
+    return jsonify(
+        data = model_to_dict(profile),
+        message = f"Successfully retrieved {profile.username}'s page",
+        status = 200
+    ), 200
+
+@users.route('/index', methods=['GET'])
+def profile_index():
+    results = models.User.select()
+    profile_dicts = [model_to_dict(profile) for profile in results]
+
+    # profiles = profile_dicts.pop('password')
+
+    # for profile_dict in profile_dicts:
+    #     profile_dict['post_owner'].pop('password')
+    # current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
+
+    # for post_dict in current_user_post_dicts:
+    #     post_dict['post_owner'].pop('password')
+
+    return jsonify({
+        'data': profile_dicts,
+        'message': "Successfully found profiles!!",
+        # 'message': f"Successfully found {len(current_user_post_dicts)} posts.",
+        'status': 200
+    }), 200
