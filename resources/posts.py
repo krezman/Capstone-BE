@@ -17,17 +17,12 @@ def post_index():
 
     for post_dict in post_dicts:
         post_dict['post_owner'].pop('password')
-    # current_user_post_dicts = [model_to_dict(post) for post in current_user.posts]
 
-    # for post_dict in current_user_post_dicts:
-    #     post_dict['post_owner'].pop('password')
-
-    return jsonify({
-        'data': post_dicts,
-        'message': "Successfully found posts!!",
-        # 'message': f"Successfully found {len(current_user_post_dicts)} posts.",
-        'status': 200
-    }), 200
+        return jsonify({
+            'data': post_dicts,
+            'message': "Successfully found posts!!",
+            'status': 200
+        }), 200
 
 @posts.route ('/create', methods=['POST'])
 def create_post():
@@ -49,12 +44,13 @@ def create_post():
 @posts.route('/<id>', methods=['GET'])
 def get_one_post(id):
     post = models.Post.get_by_id(id)
-    print(post)
+    jpost = model_to_dict(post)
+    
     return jsonify(
-        data = model_to_dict(post),
-        message = "Welcome to this post's show!",
-        status = 200
-    ), 200
+            data = jpost,
+            message = "Welcome to this post's show!",
+            status = 200
+        ), 200
 
 
 

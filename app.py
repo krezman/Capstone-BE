@@ -35,8 +35,8 @@ def load_user(userid):
     except:
         return None
     
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(posts, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000'])
+CORS(posts, origins=['http://localhost:3000'])
 
 
 app.register_blueprint(users, url_prefix='/api/v1/users')

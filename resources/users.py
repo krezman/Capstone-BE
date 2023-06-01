@@ -69,6 +69,7 @@ def login():
 
         check_pw = check_password_hash(user_dict['password'], payload['password'])
 
+
         if (check_pw):
             login_user(user)
             print(user_dict)
