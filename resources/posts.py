@@ -28,7 +28,7 @@ def post_index():
 def create_post():
     payload = request.get_json()
 
-    new_post = models.Post.create(photo = payload['photo'], text = payload['text'], post_owner = current_user.id)
+    new_post = models.Post.create(photo = payload['photo'], text = payload['text'], post_owner = payload['id'])
 
     post_dict = model_to_dict(new_post)
 
@@ -36,7 +36,7 @@ def create_post():
 
     return jsonify(
         data = post_dict,
-        message = f'Successfully create a new post by {current_user.id}',
+        message = f'Successfully create a new post by {current_user}',
         status = 201
     ), 210
 
@@ -63,7 +63,7 @@ def update_post(id):
 
     return jsonify(
         data = model_to_dict(models.Post.get_by_id(id)),
-        message = "Congrats, your post is updated successfully!",
+        message = f"Congrats, your post is updated successfully! THIS IS YOUR POST==> {model_to_dict(models.Post.get_by_id(id))}",
         status = 200
     ), 200
 

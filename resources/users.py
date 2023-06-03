@@ -72,7 +72,8 @@ def login():
 
         if (check_pw):
             login_user(user)
-            print(user_dict)
+            loginInfo = user_dict.pop('password')
+            # print(user_dict)
 
             return jsonify(
                 data = user_dict,
@@ -97,6 +98,7 @@ def login():
 @users.route('/logout', methods=["GET"])
 def logout():
     logout_user() # this line will need to be imported
+    print( "logged out!")
     return jsonify(
         data={},
         status=200,
