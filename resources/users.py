@@ -19,7 +19,7 @@ def register():
 
     payload['email'] = payload['email'].lower()
     payload['username'] = payload['username'].lower()
-    print(payload)
+    # print(payload)
 
     try:
         models.User.get(models.User.email == payload['email'])
@@ -46,12 +46,12 @@ def register():
         login_user(created_user)
 
         created_user_dict = model_to_dict(created_user)
-
-        print(created_user_dict)
+        created_user_dict.pop('password')
+        
 
         return jsonify(
             data = created_user_dict,
-            message = f"Successfully registered user with {created_user_dict['email']}",
+            message = f"Successfully registered user with a new user!",
             status = 201
         ), 201
     
