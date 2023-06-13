@@ -38,8 +38,8 @@ def load_user(userid):
     except:
         return None
     
-CORS(users, origins=['http://localhost:3000', 'https://capstone-frontend-gt2k.vercel.app/'])
-CORS(posts, origins=['http://localhost:3000', 'https://capstone-frontend-gt2k.vercel.app/'])
+CORS(users, origins=['http://localhost:3000', 'https://capstone-frontend-peach.vercel.app/'])
+CORS(posts, origins=['http://localhost:3000', 'https://capstone-frontend-peach.vercel.app/'])
 
 
 app.register_blueprint(users, url_prefix='/api/v1/users')
@@ -62,7 +62,7 @@ def before_request():
     
 @app.after_request
 def add_cors_headers(response):
-    allowed_origins = ['http://localhost:3000', 'https://capstone-frontend-gt2k.vercel.app/']
+    allowed_origins = ['http://localhost:3000', 'https://capstone-frontend-peach.vercel.app/']
     origin = request.headers.get('Origin')
     
     if origin in allowed_origins:
