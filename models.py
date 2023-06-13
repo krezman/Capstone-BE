@@ -1,11 +1,13 @@
 # Dependencies for creating models
 from peewee import *
 import datetime
+import os
+from playhouse.db_url import connect
 
 from flask_login import UserMixin
 
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///yd.sqlite')
 
-DATABASE = SqliteDatabase('yd.sqlite')
 
 # User/Vendor Model
 class User(UserMixin, Model):
