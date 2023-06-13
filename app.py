@@ -38,8 +38,8 @@ def load_user(userid):
     except:
         return None
     
-CORS(users, origins=['http://localhost:3000'])
-CORS(posts, origins=['http://localhost:3000'])
+CORS(users, origins=['http://localhost:3000', 'https://yourday.herokuapp.com/'])
+CORS(posts, origins=['http://localhost:3000', 'https://yourday.herokuapp.com/'])
 
 
 app.register_blueprint(users, url_prefix='/api/v1/users')
