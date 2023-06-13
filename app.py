@@ -73,9 +73,6 @@ def add_cors_headers(response):
     
     return response
     
-@app.route('/', methods=['GET'])
-def home():
-    return 'hi'
 
 
 if __name__ == '__main__':
@@ -85,3 +82,7 @@ if __name__ == '__main__':
 if os.environ.get('FLASK_ENV') != 'development':
   print('\non heroku!')
   models.initialize()
+
+@app.route('/', methods=['GET'])
+def home():
+    return 'hi'
