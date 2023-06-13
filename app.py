@@ -59,6 +59,10 @@ def before_request():
         print("Closed DB CONNECTION")
         models.DATABASE.close()
         return response
+    
+@app.route('/')
+def home():
+    return 'hi'
 
 
 if __name__ == '__main__':
