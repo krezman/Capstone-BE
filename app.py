@@ -1,5 +1,5 @@
 # Getting the backend framework set up
-from flask import Flask, jsonify, after_this_request, request
+from flask import Flask, jsonify, after_this_request
 
 # Dependency for .env file
 import os
