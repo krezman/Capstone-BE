@@ -60,7 +60,7 @@ def before_request():
         models.DATABASE.close()
         return response
     
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     return 'hi'
 
